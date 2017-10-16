@@ -95,12 +95,12 @@
 	<%User user = (User)request.getSession().getAttribute("user"); %>
 	<%List<Order> orderList = (List<Order>) request.getAttribute("orderList"); %>
 	<div class="header">
-		<div class="logo">水果小镇</div>
+		<div class="logo">服装市场</div>
 		<div class="section">
 			<div>&nbsp;首页&nbsp;</div>
-			<div>&nbsp;鲜果&nbsp;</div>
-			<div>&nbsp;生鲜&nbsp;</div>
-			<div>&nbsp;礼品&nbsp;</div>
+			<div>&nbsp;男装&nbsp;</div>
+			<div>&nbsp;女装&nbsp;</div>
+			<div>&nbsp;童装&nbsp;</div>
 			<div>个人中心</div>
 		</div>
 		<div class="tools">
@@ -113,7 +113,7 @@
 	<div class="main">
 		<div class="nav">
 			<span>当前位置:</span>
-			<span>水果小镇</span>>
+			<span>服装市场</span>>
 			<span>个人中心</span>>
 			<span><%=user.getUsername() %>的订单</span>
 		</div>

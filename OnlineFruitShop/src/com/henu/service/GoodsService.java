@@ -11,7 +11,7 @@ public interface GoodsService {
 	
 	public void delete(int Id);
 	
-	public void update(int id, Goods goods);
+	public void update(Goods goods);
 	
 	public int getStock(int id);
 
@@ -24,4 +24,6 @@ public interface GoodsService {
 	public List<Goods> query(Map<String, Object> map);
 
 	public int getTotalCount();
+	
+	public List<Goods> getGoodsForDescLimit(String type, int limit);
 }

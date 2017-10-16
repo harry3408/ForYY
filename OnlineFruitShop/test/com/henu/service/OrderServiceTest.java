@@ -39,7 +39,7 @@ public class OrderServiceTest {
 	    pagination.setCurrentPage(1);
 
 	    map.put("pagination", pagination);
-	    //map.put("keyword", "鲜果");
+	    //map.put("keyword", "男装");
 	    //map.put("type", "category");
 	    List<Order> ordersList = us.query(map);
 	    System.out.println("商品数量："+ordersList.size());

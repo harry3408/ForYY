@@ -14,7 +14,7 @@ public interface GoodsMapper {
 	
 	public void delete(@Param("id") int id);
 
-    public void update(Map<String, Object> map);
+    public void update(@Param("goods") Goods goods);
     
     public int getStock(@Param("id") int id);
     
@@ -28,4 +28,5 @@ public interface GoodsMapper {
 
     public int getTotalCount(Map<String, Object> map);
 
+    public List<Goods> getGoodsForDescLimit(@Param("type") String type, @Param("limit") int limit);
 }

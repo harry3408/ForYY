@@ -31,9 +31,10 @@
             	price = #{goods.price},
             	stock = #{goods.stock},
             	thumbnail = #{goods.thumbnail},
+            	imageList=#{goods.imageList},
             	lastModifyTime = NOW()
             WHERE
-            	id = #{id}
+            	id = #{goods.id}
         ]]>
     </update>
 
@@ -92,4 +93,9 @@
             LIMIT #{pagination.offset}, #{pagination.pageSize}
         ]]>
     </select>
+
+	<select id="getGoodsForDescLimit" parameterType="java.util.Map"
+		resultType="goodsEntity">
+		SELECT * FROM goods WHERE isDeleted =0 and category = #{type} order by id desc limit 0, #{limit}
+	</select>
   </mapper>

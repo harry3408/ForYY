@@ -119,7 +119,7 @@
 	<div class="header">
 		<div class="nav">
 			<div class="logo">
-				水果小镇-后台管理系统
+				服装市场-后台管理系统
 			</div>
 			<div class="tools">
 				<span class="welcome">

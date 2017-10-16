@@ -123,7 +123,7 @@
 	<div class="header">
 		<div class="nav">
 			<div class="logo">
-				水果小镇-后台管理系统
+				服装市场-后台管理系统
 			</div>
 			<div class="tools">
 				<span class="welcome">
@@ -181,7 +181,7 @@
 							<td><%=goods.getCategory() %></td>
 							<td><%=goods.getCreateTime() %></td>
 							<td>
-								<a href="<%=request.getContextPath()%>/goodsManager/getGoods/<%=goods.getId()%>">修改</a>
+								<a href="<%=request.getContextPath()%>/admin/goodsManager/getGoods/<%=goods.getId()%>">修改</a>
 								<a href="<%=request.getContextPath()%>/goodsManager/delete/<%=goods.getId()%>">删除</a>
 							</td>
 						</tr>

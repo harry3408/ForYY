@@ -109,7 +109,7 @@
 	<div class="header">
 		<div class="nav">
 			<div class="logo">
-				水果小镇-后台管理系统
+				服装市场-后台管理系统
 			</div>
 			<div class="tools">
 				<span class="welcome">
@@ -168,7 +168,7 @@
         // 指定图表的配置项和数据
 		var option = {
 		    title : {
-		        text: '水果小镇最近一月销售额',
+		        text: '服装市场最近一月销售额',
 		        subtext: '2012-09',
 		        x:'center'
 		    },
@@ -179,7 +179,7 @@
 		    legend: {
 		        orient: 'vertical',
 		        left: 'left',
-		        data: ['鲜果','生鲜','礼品','其他']
+		        data: ['男装','女装','童装','其他']
 		    },
 		    series : [
 		        {
@@ -188,9 +188,9 @@
 		            radius : '55%',
 		            center: ['50%', '60%'],
 		            data:[
-		                {value:335, name:'鲜果'},
-		                {value:310, name:'生鲜'},
-		                {value:234, name:'礼品'},
+		                {value:335, name:'男装'},
+		                {value:310, name:'女装'},
+		                {value:234, name:'童装'},
 		                {value:135, name:'其他'}
 		            ],
 		            itemStyle: {
@@ -217,7 +217,7 @@
     		        // 指定图表的配置项和数据
     				var option = {
     				    title : {
-    				        text: '水果小镇最近一月销售额',
+    				        text: '服装市场最近一月销售额',
     				        subtext: '2012-09',
     				        x:'center'
     				    },
@@ -228,7 +228,7 @@
     				    legend: {
     				        orient: 'vertical',
     				        left: 'left',
-    				        data: ['鲜果','生鲜','礼品','其他']
+    				        data: ['男装','女装','童装','其他']
     				    },
     				    series : [
     				        {
@@ -237,9 +237,9 @@
     				            radius : '55%',
     				            center: ['50%', '60%'],
     				            data:[
-    				                {value:335, name:'鲜果'},
-    				                {value:310, name:'生鲜'},
-    				                {value:234, name:'礼品'},
+    				                {value:335, name:'男装'},
+    				                {value:310, name:'女装'},
+    				                {value:234, name:'童装'},
     				                {value:135, name:'其他'}
     				            ],
     				            itemStyle: {

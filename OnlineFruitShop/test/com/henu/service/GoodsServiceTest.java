@@ -16,7 +16,7 @@ public class GoodsServiceTest {
 	public void create() {
 		Goods goods = new Goods();
 		goods.setGoodsName("凤梨");
-		goods.setCategory("鲜果");
+		goods.setCategory("男装");
 		goods.setIntroduction("来之澳大利亚");
 		goods.setPrice(12);
 		goods.setStock(1000);
@@ -65,7 +65,7 @@ public class GoodsServiceTest {
 	    pagination.setCurrentPage(1);
 
 	    map.put("pagination", pagination);
-	    map.put("keyword", "鲜果");
+	    map.put("keyword", "男装");
 	    map.put("type", "category");
 	    List<Goods> goods = us.query(map);
 	    System.out.println("商品数量："+goods.size());

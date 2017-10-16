@@ -1,26 +1,19 @@
 package com.henu.util;
 
-import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class SpringUtil implements ApplicationContextAware {
+@Lazy
+public class SpringUtil {
 
-	private static ApplicationContext applicationContext;
+	private static ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");;
 
-
-	@Override
-	public void setApplicationContext(ApplicationContext ac)
-			throws BeansException {
-		applicationContext = ac;
-	}
-
-	public static ApplicationContext getApplicationContext(){
+	private static ApplicationContext getApplicationContext(){
 		return applicationContext;
 	}
 
 	public static Object getBean(String beanId){
-		ApplicationContext applicationContext = getApplicationContext();
-		return applicationContext.getBean(beanId);
+		return getApplicationContext().getBean(beanId);
 	}
 }

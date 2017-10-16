@@ -1,5 +1,7 @@
 package com.henu.controller;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,20 +10,27 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.henu.dao.DictMapper;
+import com.henu.model.Dict;
 import com.henu.model.Goods;
 import com.henu.pagination.Pagination;
 import com.henu.service.GoodsService;
+import com.henu.service.GoodsServiceTest;
+import com.henu.util.DictUtil;
 
 @Controller
 public class GoodsController {
 
 	@Autowired
 	private GoodsService goodsService;
+	@Autowired
+	private DictMapper dictMapper;
 	
 	public void setGoodsService(GoodsService goodsService) {
 		this.goodsService = goodsService;
@@ -61,20 +70,22 @@ public class GoodsController {
 	
 	@RequestMapping("/admin/goodsManager/editGoods")
 	public String create(Goods goods){
-		System.out.println(goods);
 		if (goods.getId() > 0) {
-			goodsService.update(goods.getId(), goods);
+			goodsService.update(goods);
 		} else {
 			goodsService.create(goods);
 		}
 		return "redirect:list";
 	}
 
+	@RequestMapping("/index")
+	public String index(){
+		return "main";
+	}
 	
 	/*
 	 * For user
 	 * */
-	
 	
 	@RequestMapping("/goods/new")
 	public @ResponseBody List<Goods> getNewSale() {
@@ -115,6 +126,7 @@ public class GoodsController {
         List<Goods> goodsList = goodsService.query(map);
         request.setAttribute("goodsList", goodsList);
         request.setAttribute("pagination", pagination);
+        request.setAttribute("category", category);
         return "user/goodsList";
 	}
 	
@@ -125,4 +137,24 @@ public class GoodsController {
 		return "user/goodsDetail";
 	}
 
+	@RequestMapping("/goods/main")
+	public @ResponseBody Object getGoodsForMain() {
+		
+		List<Map<String, Object>> res = new ArrayList<Map<String, Object>>();
+		
+		List<Dict> dicts = DictUtil.getDictsByType("category");
+		for (Dict dict : dicts) {
+			List<Goods> gs = goodsService.getGoodsForDescLimit(dict.getKey(), 8);
+			if (!CollectionUtils.isEmpty(gs)) {
+				Map<String, Object> goodsListByType = new HashMap<String, Object>();
+				goodsListByType.put("category", dict.getKey());
+				goodsListByType.put("categoryValue", DictUtil.getDictValueBykeyAndType(dict.getKey(), "category", "其它"));
+				goodsListByType.put("data", gs);
+				
+				res.add(goodsListByType);
+			}
+		}
+		
+		return res;
+	}
 }

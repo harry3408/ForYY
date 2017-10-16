@@ -10,13 +10,12 @@
   <style>
 	#allmap{height:800px;}
   </style>
-  <title>水果小镇</title>
+  <title>服装市场</title>
 </head>
 
 <body>
-	<!-- <div id="allmap" style="hight:100%;"></div>-->
-	用户<%User user = (User)request.getSession().getAttribute("user");%><%=user.getUsername() %>
-	<%  %>
+	<div id="allmap" style="hight:100%;"></div>
+	用户
 	<button type="button" class="login-btn" id="login-btn">登录</button>
 	<a href="<%=request.getContextPath()+"/pass/logout"%>">退出</a>
 	<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>

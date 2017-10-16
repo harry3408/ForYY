@@ -3,6 +3,7 @@
 <%@ page import="com.henu.model.*" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.henu.pagination.*" %>
+<%@ include file="/WEB-INF/page/taglibs/taglib.jsp"%>
 <!DOCTYPE>
 <html>
 <head>
@@ -67,7 +68,7 @@
 		    margin-bottom: 1%;
 		}
 		.detail {
-		    width: 80%;
+		    width: 75%;
 		    margin: 0 auto;
 		    background: #32BECD;
 		}
@@ -120,8 +121,8 @@
 		.comment {
 		    clear: both;
 		    /*background: #CED4C2;;*/
-		    width: 80%;
-		    margin-left: 10%;
+		    width: 75%;
+		    margin:auto;
 		    min-height: 50px;
 		    margin-top: 90px;
 		}
@@ -172,19 +173,24 @@
 		      });
 	</script>
 </head>
-<body>
-	<%Goods goods = (Goods)request.getAttribute("goods"); %>
+<body class="wrapper">
 	<div class="header">
-		<div class="logo">水果小镇</div>
+		<div class="logo">服装市场</div>
 		<div class="section">
-			<div>&nbsp;<a href="../../">首页</a>&nbsp;</div>
-			<div>&nbsp;<a href="../list/fruit">鲜果</a>&nbsp;</div>
-			<div>&nbsp;<a href="../list/fresh">生鲜</a>&nbsp;</div>
-			<div>&nbsp;<a href="../list/gift">礼品</a>&nbsp;</div>
-			<div>个人中心</div>
+			<div><a href="${ctx}/index">&nbsp;首页&nbsp;</div>
+
+			<c:forEach items="${fns:getDictsByType('category')}" var="dict">
+				<div>
+					&nbsp;<a href="${ctx}/goods/list/man">${dict.value}</a>&nbsp;
+				</div>
+			</c:forEach>
+
+			<div>
+				<a href="${ctx}/admin/tradeAnalysis">管理中心 </a>
+			</div>
 		</div>
 		<div class="tools">
-			<input type="text" value="橙子"/>
+			<input type="text" value=""/>
 			<span>
 				<i>搜索</i>
 			</span>
@@ -192,28 +198,28 @@
 	</div>
 	<div class="main">
 		<div class="nav">
-			<a>首页</a>>
-			<a>全部鲜果</a>>
-			<a>墨西哥牛油果</a>
+			<a>首页</a> &gt;
+			<a><!-- {{goods.type | category_filter}} --><%
+			%></a> &gt;
+			<a>{{goods.goodsName}}</a>
 		</div>
+		
 		<div class="detail">
 			<div class="thumbnail">
-				<img style="height: 500px;" data-original="<%=goods.getThumbnail() %>" src="">
+				<img style="height: 500px;" src="<%=request.getContextPath()%>/{{goods.getThumbnail}}">
 			</div>
 			<div class="info">
-				<h2><%=goods.getGoodsName() %></h2>
+				<h2>{{goods.goodsName}}</h2>
 				<div class="price">
-					<font>果园价</font>
-					<span>￥<%=goods.getPrice() %></span>
+					<font>促销价</font>
+					<span>￥{{goods.price}}</span>
 				</div>
 				<div class="stock">
 					<font>库&nbsp;存</font>
-					<span><%=goods.getStock()%>kg</span>
+					<span>{{goods.stock}}</span>
 				</div>
 				<div class="buyCount">
-					
 					<font>数&nbsp;量</font>
-					
 					<span>
 						<font id="minus">-</font>
 							<input class="pull-left" id="count" type="tel" value="1" disabled="disabled">
@@ -223,11 +229,11 @@
 				<div class="totalPrice">
 					<font>总&nbsp;价</font>
 					<span>
-						￥<%=goods.getPrice() %>
+						￥{{goods.price}}
 					</span>
 				</div>
 				<div class="">
-					<input type="hidden" id="gid" value="<%=goods.getId()%>">
+					<input type="hidden" id="gid" value="{{goods.id}}">
 					<input type="submit" value="立即购买"/>
 				</div>
 			</div>
@@ -242,169 +248,121 @@
 				<ul style="margin-left: -2%;">
 					<li style="border-bottom: 1px #808080 solid;">
 						<div class="left">
-							<img src="http://cdn.fruitday.com/up_images/default_userpic.png">
-							<p>13122868630</p>
+							<p>15846550</p>
 						</div>
 						<div class="right">
-							<p style="max-height: 72px;overflow: hidden;word-wrap: break-word;">内容 牛油果味道不错！配煎蛋味道美美哒！内容 牛油果味道不错！配煎蛋味道美美哒！内容 牛油果味道不错！配煎蛋味道美美哒！内容 牛油果味道不错！配煎蛋味道美美哒！内容 牛油果味道不错！配煎蛋味道美美哒！内容 牛油果味道不错！配煎蛋味道美美哒！内容 牛油果味道不错！配煎蛋味道美美哒！内容 牛油果味道不错！配煎蛋味道美美哒！内容 牛油果味道不错！配煎蛋味道美美哒！内容 牛油果味道不错！配煎蛋味道美美哒！内容 牛油果味道不错！配煎蛋味道美美哒！内容 牛油果味道不错！配煎蛋味道美美哒！内容 牛油果味道不错！配煎蛋味道美美哒！内容 牛油果味道不错！配煎蛋味道美美哒！内容 牛油果味道不错！配煎蛋味道美美哒！内容 牛油果味道不错！配煎蛋味道美美哒！内容 牛油果味道不错！配煎蛋味道美美哒！内容 牛油果味道不错！配煎蛋味道美美哒！</p>
+							<p style="max-height: 72px;overflow: hidden;word-wrap: break-word;">内容 :尺码标准，面料柔软穿着舒服，版型修身，做工精细，适合初秋穿，吊牌是柒牌！</p>
+							<p>2014-10-16 03:20:00</p>
+						</div>
+					</li>
+					<div style="clear:both;"></div>
+					<li>
+						<div class="left">
+							
+							<p>1jigin0</p>
+						</div>
+						<div class="right">
+							<p>内容 穿过一段时间，还是很喜欢，容易打理，上班休闲都 可以，显年轻，漂亮耐穿，挺不错的一件衣服！</p>
+							<p>2014-11-25 06:13:09</p>
+						</div>
+					</li>
+					<div style="clear:both;"></div>
+					<li>
+						<div class="left">
+							<p>tgse65242</p>
+						</div>
+						<div class="right">
+							<p>内容 第一次买，还是很满意的，没有最大号了，拿小了一号也能穿。哒！</p>
+							<p>2015-10-08 14:53:22</p>
+						</div>
+					</li>
+					<div style="clear:both;"></div>
+					<li>
+						<div class="left">
+							<p>659840</p>
+						</div>
+						<div class="right">
+							<p>内容 包装有些简陋，不过衣服不皱，穿上很有型！价格挺便宜的！！</p>
+							<p>2016-10-08 16:53:29</p>
+						</div>
+					</li>
+					<div style="clear:both;"></div>
+					<li>
+						<div class="left">
+							<p>586852130</p>
+						</div>
+						<div class="right">
+							<p>内容 衣服的版型不错，就是有点薄！</p>
+							<p>2016-11-09 15:53:29</p>
+						</div>
+					</li>
+					<div style="clear:both;"></div>
+					<li>
+						<div class="left">
+							<p>198528540</p>
+						</div>
+						<div class="right">
+							<p>内容 比较修身面料好做工好颜色正！</p>
 							<p>2016-02-24 09:53:29</p>
 						</div>
 					</li>
 					<div style="clear:both;"></div>
 					<li>
 						<div class="left">
-							<img src="http://cdn.fruitday.com/up_images/default_userpic.png">
-							<p>13122868630</p>
+							
+							<p>1sadf630</p>
 						</div>
 						<div class="right">
-							<p>内容 牛油果味道不错！配煎蛋味道美美哒！</p>
+							<p>内容 很棒的卖家，已经是老客户了！赞赞赞！！</p>
 							<p>2016-02-24 09:53:29</p>
 						</div>
 					</li>
 					<div style="clear:both;"></div>
 					<li>
 						<div class="left">
-							<img src="http://cdn.fruitday.com/up_images/default_userpic.png">
-							<p>13122868630</p>
+							<p>592868630</p>
 						</div>
 						<div class="right">
-							<p>内容 牛油果味道不错！配煎蛋味道美美哒！</p>
-							<p>2016-02-24 09:53:29</p>
-						</div>
-					</li>
-					<div style="clear:both;"></div>
-					<li>
-						<div class="left">
-							<img src="http://cdn.fruitday.com/up_images/default_userpic.png">
-							<p>13122868630</p>
-						</div>
-						<div class="right">
-							<p>内容 牛油果味道不错！配煎蛋味道美美哒！</p>
-							<p>2016-02-24 09:53:29</p>
-						</div>
-					</li>
-					<div style="clear:both;"></div>
-					<li>
-						<div class="left">
-							<img src="http://cdn.fruitday.com/up_images/default_userpic.png">
-							<p>13122868630</p>
-						</div>
-						<div class="right">
-							<p>内容 牛油果味道不错！配煎蛋味道美美哒！</p>
-							<p>2016-02-24 09:53:29</p>
-						</div>
-					</li>
-					<div style="clear:both;"></div>
-					<li>
-						<div class="left">
-							<img src="http://cdn.fruitday.com/up_images/default_userpic.png">
-							<p>13122868630</p>
-						</div>
-						<div class="right">
-							<p>内容 牛油果味道不错！配煎蛋味道美美哒！</p>
-							<p>2016-02-24 09:53:29</p>
-						</div>
-					</li>
-					<div style="clear:both;"></div>
-					<li>
-						<div class="left">
-							<img src="http://cdn.fruitday.com/up_images/default_userpic.png">
-							<p>13122868630</p>
-						</div>
-						<div class="right">
-							<p>内容 牛油果味道不错！配煎蛋味道美美哒！</p>
-							<p>2016-02-24 09:53:29</p>
-						</div>
-					</li>
-					<div style="clear:both;"></div>
-					<li>
-						<div class="left">
-							<img src="http://cdn.fruitday.com/up_images/default_userpic.png">
-							<p>13122868630</p>
-						</div>
-						<div class="right">
-							<p>内容 牛油果味道不错！配煎蛋味道美美哒！</p>
-							<p>2016-02-24 09:53:29</p>
+							<p>内容 还不错，LG穿着蛮合身的！</p>
+							<p>2016-09-23 09:53:29</p>
 						</div>
 					</li>
 					<div style="clear:both;"></div>
 				</ul>
 			</div>
-			<%String[] img = goods.getImageList().split(";"); %>
-			<div class="img">
-				<% for(int i=0; i<img.length; i++) {%>
-							<img src="" data-original="<%=img[i]%>" >
-				<%} %>
-
+			<div class="img" v-for="detailImage in goods.imageList">
+				<img src="<%=request.getContextPath()%>/{{detailImage}}" >
+							<br /> <br />
 			</div>
 		</div>
 	</div>
-	<div class="footer">
-		
-	</div>
+	<script src="${ctxStatic}/js/vue.js"></script>
 	<script type="text/javascript">
-	$(function(){
-		$("document").ready(function(){
-			$(".totalPrice>span").text($(".price>span").text());
-		})
-		$("#minus").click(function(){
-			var count = $("#count").val();
-			var stock = parseInt($(".stock>span").text().split("kg")[0]);
-			var price = parseInt($(".price>span").text().split("￥")[1]);
-			if (count <=1) {
-				$(this).css("cursor", "no-drop");
-				
-			} else {
-				count = count -1;
-				$("#count").val(count);
-				$(this).css("cursor", "pointer");
-				$("#plus").css("cursor", "pointer");
-				$(".totalPrice>span").text("￥"+count*price);
+		var CATEGORY = JSON.parse("${fns:getDictsByTypeForJson('category')}");
+		var GOODS = "${goods}";
+		
+		var wrapperVue = new Vue({
+			el : ".wrapper",
+			data : {
+				goods:{},
+			},
+			methods : {
+ 			},
+			filters: {
+               category_filter: function (value) {
+                    for (var i in CATEGORY) {
+                        if (value == CATEGORY[i]['key']) {
+                            return CATEGORY[i]['value'];
+                        }
+                    }
+                    return '其它';
+                }
+			},
+			ready: function() {
+				console.log("tset");
+				this.goods = GOODS;
 			}
 		});
-		$("#plus").click(function(){
-			var count = parseInt($("#count").val());
-			var stock = parseInt($(".stock>span").text().split("kg")[0]);
-			var price = parseInt($(".price>span").text().split("￥")[1]);
-			if (count >= stock) {
-				$(this).css("cursor", "no-drop");
-			} else {
-				count = count + 1;
-				$("#count").val(count);
-				$(this).css("cursor", "pointer");
-				$("#minus").css("cursor", "pointer");
-				$(".totalPrice>span").text("￥"+count*price);
-			}
-		});
-		$("input[type=\"submit\"]").click(function(){
-			var buyCount = $("#count").val();
-			var gid = $("#gid").val();
-			var url = location.origin + "/OnlineFruitShop/buy?gid="+gid+"&count="+buyCount;
-			$.get(url,function(data){
-				if (data == 200) {
-					if (confirm("订单提交成功，查看订单？")==true){
-						alert("跳转查看订单")
-					} else {
-						window.location.reload();
-					}
-				}
-
-			})
-		})
-		$(".title>span").click(function(){
-		    if ($(this).text()=="商品简介") {
-		    	$(this).css("background", "#F7F7F7");
-		    	$(this).siblings("span").css("background", "#DCDCD5");
-		    	$(".img").css("display","block");
-		   		$(".content").css("display", "none");
-		   } else {
-		   		$(this).css("background", "#F7F7F7");
-		    	$(this).siblings("span").css("background", "#DCDCD5");
-		   		$(".content").css("display","block");
-		   		$(".img").css("display", "none");
-		   }
-		})
-	})
 	</script>
 </body>
 </html>

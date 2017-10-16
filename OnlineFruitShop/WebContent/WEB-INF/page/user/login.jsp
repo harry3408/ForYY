@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="<%=request.getContextPath()%>/static/image/favicon.ico" >
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>水果小镇 - 登录</title>
+	<title>服装市场 - 登录</title>
 	<style>
 		body{
 			margin:0 auto;
@@ -74,7 +74,7 @@
 <body>
 	<div class="content" id="content">
 		<div class="simpleHeader" id="header">
-			<a class="logo">水果小镇</a>
+			<a class="logo">服装市场</a>
 			<div id="trigger">
 				<a href="" id="toLogin" class="linkAGray">登录</a>
 				<span>|</span>

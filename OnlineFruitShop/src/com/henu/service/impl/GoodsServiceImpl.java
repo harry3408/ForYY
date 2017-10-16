@@ -31,11 +31,8 @@ public class GoodsServiceImpl implements GoodsService{
 	}
 
 	@Override
-	public void update(int id, Goods goods) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("id", id);
-		map.put("goods", goods);
-		goodsMapper.update(map);
+	public void update(Goods goods) {
+		goodsMapper.update(goods);
 	}
 
 	@Override
@@ -85,5 +82,8 @@ public class GoodsServiceImpl implements GoodsService{
 		return goodsMapper.getLastByLimit(Integer.parseInt(limit));
 	}
 
+	public List<Goods> getGoodsForDescLimit(String type, int limit) {
+		return goodsMapper.getGoodsForDescLimit(type, limit);
+	}
 
 }

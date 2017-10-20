@@ -7,8 +7,8 @@
         keyProperty="id">
         <![CDATA[
             INSERT INTO
-                user (username, password, age, gender, userId, phone, address, registerTime, lastUpdateTime)
-            VALUES (#{username}, #{password}, #{age}, #{gender}, #{userId}, #{phone}, #{address}, NOW(), NOW())
+                user (username, password, age, gender, phone, address, registerTime, lastUpdateTime)
+            VALUES (#{username}, #{password}, #{age}, #{gender}, #{phone}, #{address}, NOW(), NOW())
         ]]>
     </insert>
     
@@ -17,7 +17,7 @@
             Update 
             	user 
             SET 
-                isDelete = 1, lastUpdateTime = NOW() WHERE id = #{id}
+                isDeleted = 1, lastUpdateTime = NOW() WHERE id = #{id}
         ]]>
     </update>
     

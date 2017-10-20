@@ -194,8 +194,8 @@ form>div>textarea {
 			<ul class="menu">
 				<li>用户管理
 					<ul>
-						<li>管理员</li>
-						<li>用户</li>
+						
+						<li><a href="<%=request.getContextPath()%>/userManager/list">用户</a></li>
 					</ul>
 				</li>
 				<li><a

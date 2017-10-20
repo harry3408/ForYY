@@ -136,8 +136,8 @@
 			<ul class="menu">
 				<li>用户管理
 					<ul>
-						<li>管理员</li>
-						<li>用户</li>
+						
+						<li><a href="<%=request.getContextPath()%>/userManager/list">用户</a></li>
 					</ul>
 				</li>
 				<li><a href="<%=request.getContextPath()%>/admin/goodsManager/list">商品管理</a>
@@ -162,7 +162,7 @@
 						<td>用户编号</td>
 						<td>用户名</td>
 						<td>注册时间</td>
-						<td>角色</td>
+						<td>最后登录时间</td>
 						<td>操作</td>
 					</tr>
 					<%List<User> users = (List<User>)request.getAttribute("users"); %>
@@ -173,7 +173,8 @@
 							<td><%=user.getRegisterTime() %></td>
 							<td><%=user.getLastUpdateTime() %></td>
 							<td>
-								<a href="<%=request.getContextPath()%>/userManager/getUser/<%=user.getId()%>">查看详情</a>
+								<a href="<%=request.getContextPath()%>/userManager/getUser/<%=user.getId()%>">详情</a>
+								<a href="<%=request.getContextPath()%>/userManager/disable/<%=user.getId()%>">禁用</a>
 							</td>
 						</tr>
 					<%} %>

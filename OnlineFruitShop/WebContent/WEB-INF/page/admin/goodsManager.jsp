@@ -140,8 +140,8 @@
 			<ul class="menu">
 				<li>用户管理
 					<ul>
-						<li>管理员</li>
-						<li>用户</li>
+						
+						<li><a href="<%=request.getContextPath()%>/userManager/list">用户</a></li>
 					</ul>
 				</li>
 				<li><a href="<%=request.getContextPath()%>/admin/goodsManager/list">商品管理</a>
@@ -193,14 +193,14 @@
 			<div class="pagination">
 				<span>
 				<%if(!pagination.isFirstPage() && pagination.getPageCount() > 1){ %>
-					<a id="pre" href="<%=request.getContextPath()%>/userManager/list?currentPage=<%=pagination.getCurrentPage()-1%>">上一页</a><%}else{ %>
+					<a id="pre" href="<%=request.getContextPath()%>/admin/goodsManager/list?currentPage=<%=pagination.getCurrentPage()-1%>">上一页</a><%}else{ %>
 					<font>上一页</font>
 				<%} %>
 					<font id="current"><%=pagination.getCurrentPage() %></font>
 					<font>/</font>
 					<font id="total"><%=pagination.getPageCount() %></font>
 				<%if (!pagination.isLastPage() && pagination.getPageCount() > 1 ) {%>
-					<a id="next" href="<%=request.getContextPath()%>/userManager/list?currentPage=<%=pagination.getCurrentPage()+1%>">下一页</a><%}else{ %>
+					<a id="next" href="<%=request.getContextPath()%>/admin/goodsManager/list?currentPage=<%=pagination.getCurrentPage()+1%>">下一页</a><%}else{ %>
 					<font>下一页</font>
 				<%} %>
 				</span>

@@ -149,8 +149,8 @@
 			<ul class="menu">
 				<li>用户管理
 					<ul>
-						<li>管理员</li>
-						<li>用户</li>
+						
+						<li><a href="<%=request.getContextPath()%>/userManager/list">用户</a></li>
 					</ul>
 				</li>
 				<li><a href="<%=request.getContextPath()%>/admin/goodsManager/list">商品管理</a>
@@ -198,7 +198,7 @@
 				</div>
 				<div>
 					<label>用户ID</label>
-					<span><%=user.getUserId()%></span>
+					<span><%=user.getId()%></span>
 				</div>
   				<div>
 					<label>电话</label>

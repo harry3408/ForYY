@@ -5,7 +5,6 @@ import org.apache.ibatis.type.Alias;
 @Alias("userEntity")
 public class User {
 	private int id;
-	private String userId;
 	private String username;
 	private String password;
 	private int age;
@@ -23,12 +22,6 @@ public class User {
 		this.id = id;
 	}
 
-	public String getUserId() {
-		return userId;
-	}
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
 	public String getUsername() {
 		return username;
 	}

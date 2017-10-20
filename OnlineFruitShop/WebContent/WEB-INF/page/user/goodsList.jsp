@@ -9,6 +9,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>商品列表</title>
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
 <style>
 body {
 	margin: 0px;
@@ -25,18 +28,13 @@ li {
 	list-style: none;
 }
 
-.header {
-	height: 30%;
-}
-
 .header>div {
-	height: 100px;
 	float: left;
 }
 
 .logo {
 	margin-left: 10%;
-	line-height: 6;
+	line-height: 5;
 }
 
 .section {
@@ -58,13 +56,12 @@ li {
 
 .tools {
 	float: right !important;
-	line-height: 6;
+	margin-top:1%;
 	margin-right: 10%;
 }
 
 .main {
 	min-height: 700px;
-	/*background: #9ACD32;*/
 	clear: both;
 	border-top: 1px #808080 solid;
 }
@@ -103,7 +100,6 @@ ul.key>li {
 .pro li {
 	float: left;
 	width: 24%;
-	/* margin-right: 1%; */
 	margin-top: 20px;
 	text-align: left;
 }
@@ -112,111 +108,99 @@ ul.key>li {
 	width: 93%;
 }
 </style>
-<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-<script
-	src="http://apps.bdimg.com/libs/jquery-lazyload/1.9.5/jquery.lazyload.js"></script>
-<script>
-	$(function() {
-		$("img").lazyload({
-			placeholder : "images/loading.gif",
-			effect : "fadeIn"
-		});
-	});
-</script>
 </head>
-<body>
-	<%
-		List<Goods> goodsList = (List<Goods>) request.getAttribute("goodsList");
-	%>
-	<%
-		Pagination pagination = (Pagination) request.getAttribute("pagination");
-	%>
+<body class="wrapper">
 	<div class="header">
-		<div class="logo">服装市场</div>
+		<div class="logo">
+			<a href=""></a>服装市场
+		</div>
 		<div class="section">
-			<div>
-				<a href="${ctx}/index">&nbsp;首页&nbsp; 
-			</div>
+			<div><a href="${ctx}/index">&nbsp;首页&nbsp;</a></div>
 
 			<c:forEach items="${fns:getDictsByType('category')}" var="dict">
 				<div>
-					&nbsp;<a href="${ctx}/goods/list/${dict.key}">${dict.value}</a>&nbsp;
+					&nbsp;<a href="<%=request.getContextPath()%>/goods/list/${dict.key}">${dict.value}</a>&nbsp;
 				</div>
 			</c:forEach>
+
+			<div>
+				<a href="admin/tradeAnalysis">管理中心 </a>
+			</div>
 		</div>
 		<div class="tools">
-			<input type="text" value="外套" /> <span> <i>搜索</i>
-			</span>
+			<input type="text" /> <span> <i>搜索</i>
+			</span> <span style="float: right; margin-right: -20%; color: #45A8BF;"
+				id="location">定位中！</span>
 		</div>
 	</div>
-	<div class="main">
-		<div class="cate">
-			<ul class="key">
-				<li style="color: #9ACD32;">关键字</li>
-				<li>秋冬新品</li>
-				<li>商场同款</li>
-				<li>修身夹克</li>
-				<li>潮流卫衣</li>
-				<li>牛仔衬衫</li>
-				<li>温暖毛衣</li>
-				<li>修身西服</li>
-				<li>秋冬风衣</li>
-				<li>毛呢大衣</li>
-				<li>羽绒服</li>
-				<li>束脚裤</li>
-				<li>九分裤</li>
-				<li>夹克</li>
-				<li>单西</li>
-				<li>棉衣</li>
-				<li>马甲</li>
-				<li>T恤</li>
-				<li>工装裤</li>
-			</ul>
-		</div>
-		<div style="clear: both;"></div>
-		<div class="pro">
-			<ul style="margin-left: 1%;">
-				<%
-					for (Goods goods : goodsList) {
-				%>
-				<li><a
-					href="<%=request.getContextPath()%>/goods/detail/<%=goods.getId()%>">
-						<img src="<%=request.getContextPath()%>/<%=goods.getThumbnail()%>">
-				</a>
-					<div>
-						<span class="name"><%=goods.getGoodsName()%></span> <span
-							class="name">￥<font><%=goods.getPrice()%></font></span> <a
-							href="<%=request.getContextPath()%>/goods/<%=goods.getId()%>" />
-					</div></li>
-				<%
-					}
-				%>
-				<ul>
-		</div>
-		<div style="clear: both;"></div>
 
+	<div class="clear" style="clear: both;"></div>
+	<hr />
+	<div style="margin-left:30px;">
+		<ul>
+			<c:forEach items="${goodsList}" var="goods">
+				<li
+					style="float: left; margin-left: 10px; font-weight: bolder; border: 1px solid red;margin-top:10px;"><a
+					href="<%=request.getContextPath()%>/goods/detail/${goods.id}"><img
+						src="<%=request.getContextPath()%>/${goods.thumbnail}" /> </a>
+					<div style="margin-top: 10px;">
+						<span style="font-family: Heiti SC;">${goods.goodsName}</span><br />
+						<span><font style="color: red; font-size: 21px;">￥${goods.price}</font></span>
+					</div>
+					<div class="clear" style="clear: both;"></div></li>
+			</c:forEach>
+			<div class="clear" style="clear: both;"></div>
+		</ul>
+	</div>
+
+	<div class="pagination" style="margin-left:45%;">
+    	<%Pagination pagination = (Pagination)request.getAttribute("pagination");
+    	String category = (String) request.getAttribute("category");
+    	%>
 		<div class="pagination">
-			<span> <%
- 	if (!pagination.isFirstPage() && pagination.getPageCount() > 1) {
- %> <a id="pre"
-				href="<%=request.getContextPath()%>/userManager/list?currentPage=<%=pagination.getCurrentPage() - 1%>">上一页</a>
-				<%
-					} else {
-				%> <font>上一页</font> <%
- 	}
- %> <font id="current"><%=pagination.getCurrentPage()%></font> <font>/</font>
-				<font id="total"><%=pagination.getPageCount()%></font> <%
- 	if (!pagination.isLastPage() && pagination.getPageCount() > 1) {
- %> <a id="next"
-				href="<%=request.getContextPath()%>/userManager/list?currentPage=<%=pagination.getCurrentPage() + 1%>">下一页</a>
-				<%
-					} else {
-				%> <font>下一页</font> <%
- 	}
- %>
+			<span>
+			<%if(!pagination.isFirstPage() && pagination.getPageCount() > 1){ %>
+				<a id="pre" href="<%=request.getContextPath()%>/goods/list/<%=category%>?currentPage=<%=pagination.getCurrentPage()-1%>">上一页</a><%}else{ %>
+				<font>上一页</font>
+			<%} %>
+				<font id="current"><%=pagination.getCurrentPage() %></font>
+				<font>/</font>
+				<font id="total"><%=pagination.getPageCount() %></font>
+			<%if (!pagination.isLastPage() && pagination.getPageCount() > 1 ) {%>
+				<a id="next" href="<%=request.getContextPath()%>/goods/list/<%=category%>?currentPage=<%=pagination.getCurrentPage()+1%>">下一页</a><%}else{ %>
+				<font>下一页</font>
+			<%} %>
 			</span>
 		</div>
-	</div>
+    </div>
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="${ctxStatic}/js/vue.js"></script>
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script type="text/javascript">
+		var PAGINATION = '${pagination}';
+		var TEST = '${test}';
 
+		var wrapperVue = new Vue({
+			el : ".wrapper",
+			data : {
+				testData : 1,
+				pagination : {},
+			},
+			methods : {
+				load : function() {
+					this.getGoodsForMain();
+				},
+			},
+			ready : function() {
+				var _self = this;
+				_self.pagination = PAGINATION;
+				console.log(PAGINATION);
+				console.log(TEST);
+				console.log(_self.pagination["pageCount"]);
+			},
+		});
+	</script>
 </body>
 </html>

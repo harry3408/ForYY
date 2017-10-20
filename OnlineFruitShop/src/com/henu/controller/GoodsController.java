@@ -10,12 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSONObject;
 import com.henu.dao.DictMapper;
 import com.henu.model.Dict;
 import com.henu.model.Goods;
@@ -128,12 +130,11 @@ public class GoodsController {
         request.setAttribute("pagination", pagination);
         request.setAttribute("category", category);
         return "user/goodsList";
-	}
+	} 
 	
 	@RequestMapping("/goods/detail/{id}")
-	public String goodsDetail(@PathVariable int id,HttpServletRequest request) {
-		Goods goods = goodsService.getById(id);
-		request.setAttribute("goods", goods);
+	public String goodsDetail(@PathVariable int id, Model model) {
+		model.addAttribute("goods", goodsService.getById(id));
 		return "user/goodsDetail";
 	}
 
